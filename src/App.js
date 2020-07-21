@@ -1,10 +1,11 @@
 import React from 'react';
 // import logo from './logo.svg';
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import './App.css';
 
 import Games from './components/games'
+import Navbar from './components/nav'
 
 function App() {
   return (
@@ -17,22 +18,6 @@ function App() {
 
 
 
-  );
-}
-
-function Navbar(props) {
-  return (
-    <nav className="navbar">
-      <ul className="navbar-nav">
-        <Link to='/'>
-          <li>Home</li>
-        </Link>
-        <Link to='/games'>
-          <li>Games</li>
-        </Link>
-        <button>Sign Out</button>
-      </ul>
-    </nav>
   );
 }
 
