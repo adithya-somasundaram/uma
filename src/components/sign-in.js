@@ -1,11 +1,11 @@
 import React from 'react'
 
-function PictureGame() {
+function SignIn() {
     return (
     <div className = "App-header">
-        Picture Game
+        Sign In
     </div>
     );
 }
 
-export default PictureGame;
+export default SignIn;

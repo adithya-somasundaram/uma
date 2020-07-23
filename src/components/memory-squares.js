@@ -1,11 +1,11 @@
 import React from 'react'
 
-function PictureGame() {
+function MemorySquares() {
     return (
     <div className = "App-header">
-        Picture Game
+       <h2>Memory Squares</h2>
     </div>
     );
 }
 
-export default PictureGame;
+export default MemorySquares;

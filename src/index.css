@@ -37,6 +37,7 @@ a {
   background-color: var(--bg);
   padding: 0 1rem;
   border-bottom: var(--border);
+  align-items: flex-end;
 }
 
 .navbar-nav {
