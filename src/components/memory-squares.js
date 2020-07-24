@@ -2,6 +2,7 @@ import React from 'react'
 
 var output = []; //random colors array
 var score = 0;
+var remaining = 16;
 var prevGuess = 17;
 
 function MemorySquares() {
@@ -20,6 +21,10 @@ function MemorySquares() {
         width: '100px',
         padding: '10px'
     }
+
+    const instructions = {
+        width: '70%'
+    }
     return (
         <div className="App-header">
             <h2>Memory Squares</h2>
@@ -34,6 +39,11 @@ function MemorySquares() {
                                 document.getElementById('1').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('1').style.backgroundColor = output[0];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -54,6 +64,11 @@ function MemorySquares() {
                                 document.getElementById('2').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('2').style.backgroundColor = output[1];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -74,6 +89,11 @@ function MemorySquares() {
                                 document.getElementById('3').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('3').style.backgroundColor = output[2];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -94,6 +114,11 @@ function MemorySquares() {
                                 document.getElementById('4').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('4').style.backgroundColor = output[3];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -116,6 +141,11 @@ function MemorySquares() {
                                 document.getElementById('5').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('5').style.backgroundColor = output[4];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -136,6 +166,11 @@ function MemorySquares() {
                                 document.getElementById('6').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('6').style.backgroundColor = output[5];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -156,6 +191,11 @@ function MemorySquares() {
                                 document.getElementById('7').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('7').style.backgroundColor = output[6];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -176,6 +216,11 @@ function MemorySquares() {
                                 document.getElementById('8').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('8').style.backgroundColor = output[7];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -198,6 +243,11 @@ function MemorySquares() {
                                 document.getElementById('9').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('9').style.backgroundColor = output[8];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -218,6 +268,11 @@ function MemorySquares() {
                                 document.getElementById('10').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('10').style.backgroundColor = output[9];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -238,6 +293,11 @@ function MemorySquares() {
                                 document.getElementById('11').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('11').style.backgroundColor = output[10];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -258,6 +318,11 @@ function MemorySquares() {
                                 document.getElementById('12').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('12').style.backgroundColor = output[11];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -280,6 +345,11 @@ function MemorySquares() {
                                 document.getElementById('13').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('13').style.backgroundColor = output[12];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -300,6 +370,11 @@ function MemorySquares() {
                                 document.getElementById('14').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('14').style.backgroundColor = output[13];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -320,6 +395,11 @@ function MemorySquares() {
                                 document.getElementById('15').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('15').style.backgroundColor = output[14];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -340,6 +420,11 @@ function MemorySquares() {
                                 document.getElementById('16').style.backgroundColor = 'gray';
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'gray';
                                 prevGuess = 17;
+                                remaining -= 2;
+                                if (!remaining) {
+                                    document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
+                                    document.getElementById('reset').innerText = 'Start Over';
+                                }
                             } else {
                                 document.getElementById('16').style.backgroundColor = output[15];
                                 document.getElementById(prevGuess.toString()).style.backgroundColor = 'white';
@@ -354,17 +439,20 @@ function MemorySquares() {
             </div>
             <br />
             <div>
-                <button style={bottomButtons} onClick={() => {
+                <button style={bottomButtons} id='reset' onClick={() => {
                     for (var i = 1; i < 17; i++) {
                         document.getElementById(i.toString()).style.background = 'white';
                         document.getElementById(i.toString()).textContent = '?';
                     }
                     initialize();
                     document.getElementById('score').innerText = 'Score: ' + score;
-
+                    document.getElementById('reset').innerText = 'Reset';
                 }}>Reset</button>
             </div>
-
+            <h5 style={instructions}>Instructions: Clicking on a white square will reveal its secret
+            color. Each secret color appears two times. The goal of this game is to match each square
+            with the other square that has the same secret color. This is done by clicking on the
+            squares consecutively. Make sure to be signed in to save your scores!</h5>
         </div >
     );
 }
@@ -379,6 +467,7 @@ function initialize() {
         colors.splice(location, 1); //remove color
     }
     score = 0;
+    remaining = 16;
     prevGuess = 17;
 }
 
