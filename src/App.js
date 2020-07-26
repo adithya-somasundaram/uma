@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import './App.css';
 
+import fire from './fire'
+
 import Navbar from './components/nav'
 import Home from './components/home'
 import MemorySquares from './components/memory-squares'
@@ -12,6 +14,7 @@ import SignUp from './components/sign-up'
 import SignIn from './components/sign-in'
 
 function App() {
+  var x = fire.database();
   return (
     <Router>
       <div>
