@@ -26,15 +26,15 @@ class SignIn extends Component {
         return (
             <div className="App-header">
                 <h2>Sign In</h2>
-                <form>
+                <div>
                     <label>Username: </label>
                     <input type='text' value= {this.state.username} onChange={this.handleUsernameChange}/>
                     <br></br>
                     <label>Password: </label>
-                    <input type='text' value= {this.state.password} onChange={this.handlePasswordChange}/>
-                </form>
+                    <input type='password' value= {this.state.password} onChange={this.handlePasswordChange}/>
+                </div>
                 <br></br>
-                <button>Enter</button>
+                <button onClick = {() => {console.log(this.state.password)}}>Enter</button>
             </div>
         );
     }
