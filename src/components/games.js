@@ -1,13 +1,41 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 
-function PictureGame() {
-    return (
-    <div className = "App-header">
-        <h2>Picture Game</h2>
-        <br></br>
-        <p>Page Under Construction</p>
-    </div>
-    );
+class PictureGame extends Component {
+    constructor(props) {
+        super(props)
+
+        this.linkStyle = {
+            float: 'right',
+            padding: '10px',
+            fontSize: '100%',
+            fontFamily: 'Arial',
+            marginTop: 'auto',
+            marginBottom: '10px'
+        }
+    }
+
+    render() {
+        return (
+            <div className="App-header">
+                <h2>Picture Game</h2>
+                <ul>
+                    <Link to='/default-pic'>
+                        <button className="game-icons">Use Default Game</button>
+                    </Link>
+                    <br></br>
+                    <Link to='/memory-squares'>
+                        <button className="game-icons">Create Custom Game</button>
+                    </Link>
+                    <br></br>
+                    <Link to='/memory-squares'>
+                        <button className="game-icons">Use Custom Game</button>
+                    </Link>
+                </ul>
+            </div>
+        );
+    }
+
 }
 
 export default PictureGame;

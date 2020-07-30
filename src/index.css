@@ -46,11 +46,15 @@ a {
   display: flex;
 }
 
-.form-box {
-  width: 500px;
-  background: rgba(0,0,0,0.8);
-  margin: 12% auto;
-  padding: 50px 0;
-  color: #fff;
-  box-shadow: 0 0 s0px spx rgba(0,0,0,0.5);
+.game-icons {
+  float: left;
+  padding: 25px;
+  font-family: 'Bahnschrift';
+  font-size: larger;
+  border-color: black;
+  border-radius: 10px;
+  background-color: antiquewhite;
+  width: 100vh;
+  height: 150px;
+  margin-bottom: 10px;
 }

@@ -15,7 +15,7 @@ function Navbar(props) {
         fontSize: '100%',
         fontFamily: 'Bahnschrift',
         marginTop: 'auto',
-        marginBottom: '10px'
+        marginBottom: '10px',
     };
 
     const homeButton = {
