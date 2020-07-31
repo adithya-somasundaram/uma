@@ -1,43 +1,35 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
-class SignIn extends Component {
-    constructor(props){
-        super(props);
+var u_name = "", p_name = "";
+function SignIn() {
+    // const 
 
-        this.state = {
-            username : '',
-            password : ''
-        }
-    }
-
-    handleUsernameChange = (event) => {
-        this.setState({
-            username : event.target.value
-        })
-    }
-
-    handlePasswordChange = (event) => {
-        this.setState({
-            password : event.target.value
-        })
-    }
-
-    render() {
-        return (
-            <div className="App-header">
-                <h2>Sign In</h2>
-                <div>
-                    <label>Username: </label>
-                    <input type='text' value= {this.state.username} onChange={this.handleUsernameChange}/>
-                    <br></br>
-                    <label>Password: </label>
-                    <input type='password' value= {this.state.password} onChange={this.handlePasswordChange}/>
-                </div>
+    return (
+        <div className="App-header">
+            <h2>Sign In</h2>
+            <div>
+                <label>Username: </label>
+                <input id='username' type='text' onChange={() => {setUname(document.getElementById('username').value)}} />
                 <br></br>
-                <button onClick = {() => {console.log(this.state.password)}}>Enter</button>
+                <label>Password: </label>
+                <input id='password' type='password' onChange={() => {setPname(document.getElementById('password').value)}} />
             </div>
-        );
-    }
+            <br></br>
+            <button onClick={()=>{verify()}}>Enter</button>
+        </div>
+    );
+}
+
+function setUname(input) {
+    u_name = input;
+}
+
+function setPname(input) {
+    p_name = input;
+}
+
+function verify() {
+    
 }
 
 export default SignIn;
