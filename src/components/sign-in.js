@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import fire from '../fire'
 
 var u_name = "", p_name = "";
 function SignIn() {
@@ -29,7 +30,22 @@ function setPname(input) {
 }
 
 function verify() {
-    
+    var ref = fire.firestore().collection('users').doc(u_name);
+
+    ref.get().then(function(doc) {
+        if (doc.exists) {
+            if(doc.data()['password'] === p_name){
+                console.log('success!')
+            } else {
+                console.log('failure')
+            }
+        } else {
+            alert("User does not exist");
+        }
+    }).catch(function(error) {
+        alert("System Error");
+        console.log("Error getting document:", error);
+    });
 }
 
 export default SignIn;
