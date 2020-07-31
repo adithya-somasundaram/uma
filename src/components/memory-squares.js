@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
+
+import { User } from '../User'
+import fire from '../fire'
 
 var output = []; //random colors array
 var score = 0;
@@ -6,9 +9,10 @@ var remaining = 16;
 var prevGuess = 17;
 
 function MemorySquares() {
+    const user = useContext(User)
 
     initialize();
-    console.log(output)
+    console.log({user}.user['value'])
 
     const squareStyle = {
         width: '100px',
@@ -43,6 +47,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user} !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('1').style.backgroundColor = output[0];
@@ -68,6 +75,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('2').style.backgroundColor = output[1];
@@ -93,6 +103,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('3').style.backgroundColor = output[2];
@@ -118,6 +131,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('4').style.backgroundColor = output[3];
@@ -145,6 +161,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('5').style.backgroundColor = output[4];
@@ -170,6 +189,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('6').style.backgroundColor = output[5];
@@ -195,6 +217,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('7').style.backgroundColor = output[6];
@@ -220,6 +245,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('8').style.backgroundColor = output[7];
@@ -247,6 +275,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('9').style.backgroundColor = output[8];
@@ -272,6 +303,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('10').style.backgroundColor = output[9];
@@ -297,6 +331,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('11').style.backgroundColor = output[10];
@@ -322,6 +359,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('12').style.backgroundColor = output[11];
@@ -349,6 +389,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('13').style.backgroundColor = output[12];
@@ -374,6 +417,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('14').style.backgroundColor = output[13];
@@ -399,6 +445,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('15').style.backgroundColor = output[14];
@@ -424,6 +473,9 @@ function MemorySquares() {
                                 if (!remaining) {
                                     document.getElementById('score').innerText = 'Great Job! Your score: ' + score;
                                     document.getElementById('reset').innerText = 'Start Over';
+                                    if({user}.user['value'] !== ''){
+                                        recordScore({user},score)
+                                    }
                                 }
                             } else {
                                 document.getElementById('16').style.backgroundColor = output[15];
@@ -469,6 +521,21 @@ function initialize() {
     score = 0;
     remaining = 16;
     prevGuess = 17;
+}
+
+function recordScore(u, s){
+    console.log("Here ", u, s)
+    var name = u.user['value'];
+    var date = new Date();
+    var entry =  (date.getMonth()+1).toString() + "-" + date.getDate().toString() + "-" + date.getFullYear().toString() + " " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+    console.log(entry)
+    fire.firestore().collection('users')
+        .doc(name)
+        .collection('memory-squares')
+        .doc(entry)
+        .set({
+            score : s,
+        });
 }
 
 export default MemorySquares;

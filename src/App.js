@@ -17,7 +17,7 @@ import SignIn from './components/sign-in'
 import {User} from './User'
 
 function App() {
-  const[value, setValue] = useState('hi');
+  const[value, setValue] = useState('');
 
   return (
     <Router>

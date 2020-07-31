@@ -10,7 +10,7 @@ function SignIn() {
 
     return (
         <div className="App-header">
-            <h2>Sign In</h2>
+            <h2 id='Header'>Sign In</h2>
             <div>
                 <label>Username: </label>
                 <input id='username' type='text' onChange={() => { setUname(document.getElementById('username').value) }} />
@@ -18,7 +18,6 @@ function SignIn() {
                 <label>Password: </label>
                 <input id='password' type='password' onChange={() => { setPname(document.getElementById('password').value) }} />
             </div>
-            <div>{value}</div>
             <br></br>
             <button onClick={() => {
                 var ref = fire.firestore().collection('users').doc(u_name);
@@ -28,7 +27,8 @@ function SignIn() {
                         if (doc.data()['password'] === p_name) {
                             console.log('success!')
                             setValue(u_name)
-                            console.log({ value }, u_name)
+                            document.getElementById('Header').innerText = "Welcome " + u_name;
+                            console.log({value}, u_name)
                         } else {
                             console.log('failure')
                         }
