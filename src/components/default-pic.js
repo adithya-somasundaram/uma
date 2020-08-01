@@ -1,17 +1,24 @@
 import React, {useContext} from 'react'
 
+// import user hooks
 import { User } from '../User'
+
+// import firebase reference
 import fire from '../fire'
 
+// import game images
 import Apple from '../apple.jpg'
 import Banana from '../banana.jpg'
 
+// global vars
 var x = [[Apple, 'apple'], [Banana, 'banana']];
 var i, score;
 const total = x.length;
 
 function DefaultPicGame() {
     const user = useContext(User)
+
+    // initialize game
     reset()
 
     return (
@@ -51,12 +58,11 @@ function DefaultPicGame() {
     )
 }
 
+// shuffle image order and reset score
 function reset() {
     i = 0;
     score = 0;
     var temp = [], location;
-
-    console.log('copy ', x)
 
     for (var y = 0; y < total; y++) {
         location = Math.floor(Math.random() * (total - y)); //random number in color array
@@ -64,15 +70,17 @@ function reset() {
         x.splice(location, 1)
     }
     x = temp;
-    console.log(temp)
 }
 
 function recordScore(u, real_score) {
     if (u.user['value'] !== '') {
-        var name = u.user['value'];
-        var date = new Date();
+        var name = u.user['value'];     // get user name
+        var date = new Date();          // get today's date
+
+        // formulate entry
         var entry = (date.getMonth() + 1).toString() + "-" + date.getDate().toString() + "-" + date.getFullYear().toString() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
-        console.log(entry)
+        
+        // write to firebase
         fire.firestore().collection('users')
             .doc(name)
             .collection('picture-game')
@@ -81,8 +89,7 @@ function recordScore(u, real_score) {
                 score: real_score,
                 total_points : total,
                 collection : 'default'
-            });
-
+         });
     }
 }
 

@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+
+//import firebase reference
 import fire from '../fire'
 
 class SignUp extends Component {
+    // store usernames from firebase
     users = []
     componentDidMount(){
         fire.firestore().collection('users').get().then(
@@ -32,6 +35,7 @@ class SignUp extends Component {
         }
     }
 
+    // input event handlers
     handleUsernameChange = (event) => {
         this.setState({
             username : event.target.value
@@ -50,6 +54,7 @@ class SignUp extends Component {
         })
     }
 
+    // create account handler checks firebase and format
     createAccount = () => {
         if(this.state.username.length < 5){
             alert("Username must be greater than 5 characters")
@@ -69,6 +74,7 @@ class SignUp extends Component {
         }
     }
 
+    // return input form
     render() {
         return (
             <div className="App-header">

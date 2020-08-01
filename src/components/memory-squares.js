@@ -1,8 +1,12 @@
 import React, { useContext } from 'react'
 
+// import user hooks
 import { User } from '../User'
+
+// import firebase reference
 import fire from '../fire'
 
+// global vars
 var output = []; //random colors array
 var score = 0;
 var remaining = 16;
@@ -11,9 +15,10 @@ var prevGuess = 17;
 function MemorySquares() {
     const user = useContext(User)
 
+    // initialize game
     initialize();
-    // console.log({user}.user['value'])
 
+    // game buttons style
     const squareStyle = {
         width: '100px',
         height: '100px',
@@ -21,11 +26,13 @@ function MemorySquares() {
         backgroundColor: 'white'
     }
 
+    // other buttons style
     const bottomButtons = {
         width: '100px',
         padding: '10px'
     }
 
+    // instruction text box style
     const instructions = {
         width: '70%'
     }
@@ -509,6 +516,7 @@ function MemorySquares() {
     );
 }
 
+// randomize colors on grid and reset score
 function initialize() {
     var location; //random number holder
     //colors to be used
@@ -523,21 +531,23 @@ function initialize() {
     prevGuess = 17;
 }
 
+// write score back to firebase if user logged in
 function recordScore(u, s){
     if (u.user['value'] !== '' && u.user['value'] !== null) {
-        var name = u.user['value'];
-        var date = new Date();
+        var name = u.user['value'];     // get user name
+        var date = new Date();          // get current date
+
+        // formulate data entry
         var entry =  (date.getMonth()+1).toString() + "-" + date.getDate().toString() + "-" + date.getFullYear().toString() + " " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
-        console.log(entry)
+        
+        // write to firebase
         fire.firestore().collection('users')
             .doc(name)
             .collection('memory-squares')
             .doc(entry)
             .set({
                 score : s,
-            });
-    } else {
-        console.log('none')
+        });
     }
 }
 

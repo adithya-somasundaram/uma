@@ -1,4 +1,6 @@
 import React from 'react'
+
+// page image
 import Raiders from './raiders.jpg'
 
 function Home() {

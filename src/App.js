@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-// import logo from './logo.svg';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+// css file
 import './App.css';
 
-// import fire from './fire'
-
+// components
 import Navbar from './components/nav'
 import Home from './components/home'
 import MemorySquares from './components/memory-squares'
@@ -14,20 +13,23 @@ import DefaultPicGame from './components/default-pic'
 import SignUp from './components/sign-up'
 import SignIn from './components/sign-in'
 
+// hooks
 import {User} from './User'
 
 function App() {
+  // store user hook
   const[value, setValue] = useState(null);
 
   return (
     <Router>
       <div>
+        {/* Set up routes with navbar and hooks */}
         <User.Provider value={{value,setValue}}>
-        <Navbar />
+          <Navbar />
           <Route path="/" exact component={Home} /> 
           <Route path="/memory-squares" exact component={MemorySquares} />
           <Route path="/picture-game" exact component={PicGame} />
-          <Route path="/default-pic" exact component={DefaultPicGame} />
+          <Route path="/picture-game/default" exact component={DefaultPicGame} />
           <Route path="/sign-up" exact component={SignUp} />
           <Route path="/sign-in" exact component={SignIn} />
         </User.Provider>

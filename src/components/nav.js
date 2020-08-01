@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
 import { Link } from "react-router-dom";
+
+// importing user hook
 import { User } from '../User'
 
-function Navbar(props) {
+function Navbar() {
     const {value,setValue} = useContext(User)
     console.log("CHECK", value)
+
+    // style for navbar links aligned right
     const rightSide = {
         marginRight: '0px',
         marginLeft: 'auto',
@@ -12,6 +16,7 @@ function Navbar(props) {
         marginBottom: '0px'
     };
 
+    // navbar button style
     const buttons = {
         float: 'right',
         padding: '10px',
@@ -21,14 +26,15 @@ function Navbar(props) {
         marginBottom: '10px',
     };
 
+    // 'U.M.A link' style
     const homeButton = {
-        // float: 'right',
         padding: '10px',
         fontSize: '200%',
         fontFamily: 'Bahnschrift',
     }
 
-    const test = {
+    // style for sign out button
+    const signOut = {
         float: 'right',
         padding: '10px',
         fontSize: '100%',
@@ -41,6 +47,7 @@ function Navbar(props) {
         color: '#dadce1',
     }
 
+    // return navbar with sign up/in if no user signed in
     if (value == null || value === '') {
         return (
             <nav className="navbar">
@@ -66,6 +73,8 @@ function Navbar(props) {
             </nav>
         );
     }
+
+    // return navbar with 'my profile' and sign out if user signed in
     return (
         <nav className="navbar">
             <ul className="navbar-nav">
@@ -82,7 +91,7 @@ function Navbar(props) {
                         <Link to='/sign-in' style={buttons}>
                             <li>My Profile</li>
                         </Link>
-                        <button style={test} onClick={() => {
+                        <button style={signOut} onClick={() => {
                             setValue(null)
                         }}>
                             <li>Sign Out</li>

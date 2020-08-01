@@ -1,13 +1,18 @@
 import React, { useContext } from 'react'
-import fire from '../fire'
 
+// import user hook
 import { User } from '../User'
 
+// import firebase reference
+import fire from '../fire'
+
+// global vars holding username and password
 var u_name = "", p_name = "";
 
 function SignIn() {
     const { value, setValue } = useContext(User);
 
+    // display sign in form if user not signed in
     if (value == null || value === '') {
         return (
             <div className="App-header">
@@ -44,6 +49,8 @@ function SignIn() {
             </div>
         );
     }
+
+    // display welcome if user signed in
     return (
         <div className="App-header">
             <br></br>
