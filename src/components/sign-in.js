@@ -46,7 +46,9 @@ function SignIn() {
     }
     return (
         <div className="App-header">
+            <br></br>
             <h2>Welcome {value}</h2>
+            <h3>Click on one of the games in the top left to get started.</h3>
         </div>
     );
 }

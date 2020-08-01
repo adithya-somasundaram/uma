@@ -501,10 +501,10 @@ function MemorySquares() {
                     document.getElementById('reset').innerText = 'Reset';
                 }}>Reset</button>
             </div>
-            <h5 style={instructions}>Instructions: Clicking on a white square will reveal its secret
+            <p style={instructions}>Instructions: Clicking on a white square will reveal its secret
             color. Each secret color appears two times. The goal of this game is to match each square
             with the other square that has the same secret color. This is done by clicking on the
-            squares consecutively. Make sure to be signed in to save your scores!</h5>
+            squares consecutively. Make sure to be signed in to save your scores!</p>
         </div >
     );
 }
