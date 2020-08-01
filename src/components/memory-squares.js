@@ -12,7 +12,7 @@ function MemorySquares() {
     const user = useContext(User)
 
     initialize();
-    console.log({user}.user['value'])
+    // console.log({user}.user['value'])
 
     const squareStyle = {
         width: '100px',
@@ -524,18 +524,19 @@ function initialize() {
 }
 
 function recordScore(u, s){
-    console.log("Here ", u, s)
-    var name = u.user['value'];
-    var date = new Date();
-    var entry =  (date.getMonth()+1).toString() + "-" + date.getDate().toString() + "-" + date.getFullYear().toString() + " " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
-    console.log(entry)
-    fire.firestore().collection('users')
-        .doc(name)
-        .collection('memory-squares')
-        .doc(entry)
-        .set({
-            score : s,
-        });
+    if (u.user['value'] !== '') {
+        var name = u.user['value'];
+        var date = new Date();
+        var entry =  (date.getMonth()+1).toString() + "-" + date.getDate().toString() + "-" + date.getFullYear().toString() + " " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+        console.log(entry)
+        fire.firestore().collection('users')
+            .doc(name)
+            .collection('memory-squares')
+            .doc(entry)
+            .set({
+                score : s,
+            });
+    }
 }
 
 export default MemorySquares;
