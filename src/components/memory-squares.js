@@ -524,7 +524,7 @@ function initialize() {
 }
 
 function recordScore(u, s){
-    if (u.user['value'] !== '') {
+    if (u.user['value'] !== '' && u.user['value'] !== null) {
         var name = u.user['value'];
         var date = new Date();
         var entry =  (date.getMonth()+1).toString() + "-" + date.getDate().toString() + "-" + date.getFullYear().toString() + " " + date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
@@ -536,6 +536,8 @@ function recordScore(u, s){
             .set({
                 score : s,
             });
+    } else {
+        console.log('none')
     }
 }
 

@@ -22,8 +22,8 @@ function App() {
   return (
     <Router>
       <div>
-        <Navbar />
         <User.Provider value={{value,setValue}}>
+        <Navbar />
           <Route path="/" exact component={Home} /> 
           <Route path="/memory-squares" exact component={MemorySquares} />
           <Route path="/picture-game" exact component={PicGame} />
