@@ -8,38 +8,45 @@ var u_name = "", p_name = "";
 function SignIn() {
     const { value, setValue } = useContext(User);
 
+    if (value == null || value === '') {
+        return (
+            <div className="App-header">
+                <h2 id='Header'>Sign In</h2>
+                <div>
+                    <label>Username: </label>
+                    <input id='username' type='text' onChange={() => { setUname(document.getElementById('username').value) }} />
+                    <br></br>
+                    <label>Password: </label>
+                    <input id='password' type='password' onChange={() => { setPname(document.getElementById('password').value) }} />
+                </div>
+                <br></br>
+                <button onClick={() => {
+                    var ref = fire.firestore().collection('users').doc(u_name);
+
+                    ref.get().then(function (doc) {
+                        if (doc.exists) {
+                            if (doc.data()['password'] === p_name) {
+                                console.log('success!')
+                                setValue(u_name)
+                                // document.getElementById('Header').innerText = "Welcome " + u_name;
+                                console.log({ value }, u_name)
+                            } else {
+                                console.log('failure')
+                            }
+                        } else {
+                            alert("User does not exist");
+                        }
+                    }).catch(function (error) {
+                        alert("System Error");
+                        console.log("Error getting document:", error);
+                    });
+                }}>Enter</button>
+            </div>
+        );
+    }
     return (
         <div className="App-header">
-            <h2 id='Header'>Sign In</h2>
-            <div>
-                <label>Username: </label>
-                <input id='username' type='text' onChange={() => { setUname(document.getElementById('username').value) }} />
-                <br></br>
-                <label>Password: </label>
-                <input id='password' type='password' onChange={() => { setPname(document.getElementById('password').value) }} />
-            </div>
-            <br></br>
-            <button onClick={() => {
-                var ref = fire.firestore().collection('users').doc(u_name);
-
-                ref.get().then(function (doc) {
-                    if (doc.exists) {
-                        if (doc.data()['password'] === p_name) {
-                            console.log('success!')
-                            setValue(u_name)
-                            document.getElementById('Header').innerText = "Welcome " + u_name;
-                            console.log({value}, u_name)
-                        } else {
-                            console.log('failure')
-                        }
-                    } else {
-                        alert("User does not exist");
-                    }
-                }).catch(function (error) {
-                    alert("System Error");
-                    console.log("Error getting document:", error);
-                });
-            }}>Enter</button>
+            <h2>Welcome {value}</h2>
         </div>
     );
 }
