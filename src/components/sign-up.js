@@ -45,7 +45,11 @@ function SignUp() {
                     alert("Password taken :(")
                 } else {
                     fire.firestore().collection('users').doc(username).set({
-                        password: password
+                        password: password,
+                        mem_squares_played: 0,
+                        mem_squares_score: 0,
+                        default_pic_played: 0,
+                        default_pic_score: 0
                     });
                     setValue(username)
                     alert("New account created :)");
