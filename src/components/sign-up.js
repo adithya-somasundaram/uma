@@ -84,9 +84,4 @@ function store() {
     );
 }
 
-// create account handler checks firebase and format
-function createAccount() {
-    
-}
-
 export default SignUp;
