@@ -29,7 +29,7 @@ class PictureGame extends Component {
                         <button className="game-icons">Create Custom Game</button>
                     </Link>
                     <br></br>
-                    <Link to='/memory-squares'>
+                    <Link to='/picture-game/custom'>
                         <button className="game-icons">Use Custom Game</button>
                     </Link>
                 </ul>

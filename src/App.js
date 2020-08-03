@@ -30,6 +30,7 @@ function App() {
           <Route path="/memory-squares" exact component={MemorySquares} />
           <Route exact path="/picture-game" render={(props) => <PicGame {...props} name={value}/>} />
           <Route path="/picture-game/default" exact component={DefaultPicGame} />
+          {/* <Route path="/my-profile" exact component={MyProfile} /> */}
           <Route path="/sign-up" exact component={SignUp} />
           <Route path="/sign-in" exact component={SignIn} />
         </User.Provider>
