@@ -535,6 +535,24 @@ function initialize() {
 function recordScore(u, s){
     if (u.user['value'] !== '' && u.user['value'] !== null) {
         var name = u.user['value'];     // get user name
+        var total_s, total_p;           // will read total games played + total score
+
+        fire.firestore().collection('users')
+            .doc(name)
+            .get()
+            .then(function(doc){
+                if(doc.exists){
+                    total_p = doc.data()['mem_squares_played']
+                    total_s = doc.data()['mem_squares_score']
+                    fire.firestore().collection('users')
+                        .doc(name)
+                        .update({
+                            mem_squares_played : (total_p + 1),
+                            mem_squares_score : total_s + s
+                        })
+                }
+            })
+
         var date = new Date();          // get current date
 
         // formulate data entry
@@ -548,6 +566,8 @@ function recordScore(u, s){
             .set({
                 score : s,
         });
+    } else {
+        console.log('no user signed in')
     }
 }
 
