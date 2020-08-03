@@ -28,7 +28,7 @@ function App() {
           <Navbar />
           <Route path="/" exact component={Home} /> 
           <Route path="/memory-squares" exact component={MemorySquares} />
-          <Route path="/picture-game" exact component={PicGame} />
+          <Route exact path="/picture-game" render={(props) => <PicGame {...props} name={value}/>} />
           <Route path="/picture-game/default" exact component={DefaultPicGame} />
           <Route path="/sign-up" exact component={SignUp} />
           <Route path="/sign-in" exact component={SignIn} />

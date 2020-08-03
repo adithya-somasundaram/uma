@@ -1,8 +1,22 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 
+import DefaultPic from './default-pic'
+
 class PictureGame extends Component {
+    constructor(props){
+        super(props)
+
+        console.log(this.props.name)
+    }
     render() {
+        if(this.props.name == null || this.props.name === ''){
+            return(
+                <div className="App-header">
+                    <DefaultPic/>
+                </div>
+            )
+        }
         return (
             <div className="App-header">
                 <h2>Picture Game</h2>

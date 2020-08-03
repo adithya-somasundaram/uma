@@ -1,99 +1,92 @@
-import React, { Component } from 'react'
+import React, {useContext} from 'react'
 
-//import firebase reference
+// import firebase reference
 import fire from '../fire'
 
-class SignUp extends Component {
+// import user hooks
+import {User} from '../User'
+
+var users = []
+var secrets = []
+var username = ''
+var password = ''
+var confirm_password = ''
+
+function SignUp() {
+    const { setValue } = useContext(User);
+
     // store usernames from firebase
-    users = []
-    componentDidMount(){
-        fire.firestore().collection('users').get().then(
-            snapshot => {
-                const usernames = []
-                const secrets = []
-                snapshot.forEach(doc => {
-                    usernames.push(doc.id)
-                    secrets.push(doc.data()['password'])
-                })
-                this.setState({
-                    users: usernames,
-                    secret: secrets
-                })
-            }
-        );
-    }
+    store()
 
-    constructor(props){
-        super(props);
-
-        this.state = {
-            username : '',
-            password : '',
-            confirm_password : '',
-            users: [],
-            secret: []
-        }
-    }
-
-    // input event handlers
-    handleUsernameChange = (event) => {
-        this.setState({
-            username : event.target.value
-        })
-    }
-
-    handlePasswordChange = (event) => {
-        this.setState({
-            password : event.target.value
-        })
-    }
-
-    handleConfirmPasswordChange = (event) => {
-        this.setState({
-            confirm_password : event.target.value
-        })
-    }
-
-    // create account handler checks firebase and format
-    createAccount = () => {
-        if(this.state.username.length < 5){
-            alert("Username must be greater than 5 characters")
-        }else if(this.state.password.length < 7){
-            alert("Password must be greater than 7 characters")
-        }else if(this.state.confirm_password !== this.state.password){
-            alert("Passwords do not match!")
-        } else if (this.state.users.includes(this.state.username)){
-            alert("Username taken :(")
-        } else if (this.state.secret.includes(this.state.password)){
-            alert("Password taken :(")
-        } else {
-            fire.firestore().collection('users').doc(this.state.username).set({
-                password : this.state.password
-            });
-            alert("New account created :)");
-        }
-    }
-
-    // return input form
-    render() {
-        return (
-            <div className="App-header">
-                <h2>Sign Up</h2>
-                <form>
-                    <label>Username: </label>
-                    <input type='text' value={this.state.username} onChange={this.handleUsernameChange}/>
-                    <br></br>
-                    <label>Password: </label>
-                    <input type='password' value={this.state.password} onChange={this.handlePasswordChange}/>
-                    <br></br>
-                    <label>Confirm Password: </label>
-                    <input type='password' value={this.state.confirm_password} onChange={this.handleConfirmPasswordChange}/>
-                </form>
+    return (
+        <div className="App-header">
+            <h2>Sign Up</h2>
+            <form>
+                <label>Username: </label>
+                <input id='username' type='text' onChange={() => handleUsernameChange(document.getElementById('username').value)} />
                 <br></br>
-                <button onClick = {this.createAccount}>Enter</button>
-            </div>
-        );
-    }
+                <label>Password: </label>
+                <input type='password' id='password' onChange={() => handlePasswordChange(document.getElementById('password').value)} />
+                <br></br>
+                <label>Confirm Password: </label>
+                <input type='password' id='c_password' onChange={() => handleConfirmPasswordChange(document.getElementById('c_password').value)} />
+            </form>
+            <br></br>
+            <button onClick={() => {
+                if (username.length < 5) {
+                    alert("Username must be greater than 5 characters")
+                } else if (password.length < 7) {
+                    alert("Password must be greater than 7 characters")
+                } else if (confirm_password !== password) {
+                    alert("Passwords do not match!")
+                } else if (users.includes(username)) {
+                    alert("Username taken :(")
+                } else if (secrets.includes(password)) {
+                    alert("Password taken :(")
+                } else {
+                    fire.firestore().collection('users').doc(username).set({
+                        password: password
+                    });
+                    setValue(username)
+                    alert("New account created :)");
+                }
+            }}>Enter</button>
+        </div>
+    );
+
+}
+
+// input event handlers
+function handleUsernameChange(input) {
+    username = input
+}
+
+function handlePasswordChange(input) {
+    password = input
+}
+
+function handleConfirmPasswordChange(input) {
+    confirm_password = input
+}
+
+function store() {
+    fire.firestore().collection('users').get().then(
+        snapshot => {
+            const usernames = []
+            const second_secrets = []
+            snapshot.forEach(doc => {
+                usernames.push(doc.id)
+                second_secrets.push(doc.data()['password'])
+            })
+            users = usernames
+            secrets = second_secrets
+        }
+    );
+}
+
+// create account handler checks firebase and format
+function createAccount() {
+    
 }
 
 export default SignUp;

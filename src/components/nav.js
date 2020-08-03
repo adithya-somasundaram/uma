@@ -6,7 +6,6 @@ import { User } from '../User'
 
 function Navbar() {
     const {value,setValue} = useContext(User)
-    console.log("CHECK", value)
 
     // style for navbar links aligned right
     const rightSide = {
@@ -31,6 +30,7 @@ function Navbar() {
         padding: '10px',
         fontSize: '200%',
         fontFamily: 'Bahnschrift',
+        marginTop: '2px'
     }
 
     // style for sign out button
