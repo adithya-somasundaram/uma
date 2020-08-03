@@ -25,35 +25,53 @@ function DefaultPicGame() {
         <div className="App-header">
             <h2>Picture Game</h2>
             <img id='image' src={x[i][0]} alt="Raiders" width="30%" />
-            <input />
+            <input id='input'/>
             <button onClick={() => {
-                if (i + 1 < total) {
+                console.log(i,total)
+                if (i < total) {
+                    if(document.getElementById('input').value.toUpperCase() ===
+                    x[i][1].toUpperCase()){
+                        score += 1;
+                    }
+                    document.getElementById('input').value = ''
                     i += 1;
-                    document.getElementById('image').src = x[i][0];
+                    if(i < total){
+                        document.getElementById('image').src = x[i][0];
+                    }
                 }
+                console.log(i, total)
                 if (i === total) {
+                    console.log('in here')
                     recordScore({user}, score)
+                    i += 1
                 }
             }} >Check</button>
             <button onClick={() => {
-                if (i + 1 < total) {
+                if (i < total) {
                     i += 1;
                     score += 1;
-                    document.getElementById('image').src = x[i][0];
+                    if(i < total){
+                        document.getElementById('image').src = x[i][0];
+                    }
                 }
                 if (i === total) {
                     recordScore({user}, score)
+                    i += 1
                 }
             }} >Overwrite</button>
             <button onClick={() => {
-                if (i + 1 < total) {
+                if (i < total) {
                     i += 1;
-                    document.getElementById('image').src = x[i][0];
+                    if(i < total){
+                        document.getElementById('image').src = x[i][0];
+                    }
                 }
                 if (i === total) {
                     recordScore({user}, score)
+                    i += 1
                 }
             }} >Skip</button>
+            <button onClick={() => reset()} >Start Over</button>
         </div>
     )
 }
@@ -73,8 +91,27 @@ function reset() {
 }
 
 function recordScore(u, real_score) {
-    if (u.user['value'] !== '') {
+    console.log(u)
+    if (u.user['value'] !== '' && u.user['value'] !== null) {
         var name = u.user['value'];     // get user name
+        var total_s, total_p;           // will read total games played + total score
+
+        fire.firestore().collection('users')
+            .doc(name)
+            .get()
+            .then(function(doc){
+                if(doc.exists){
+                    total_p = doc.data()['default_pic_played']
+                    total_s = doc.data()['default_pic_score']
+                    fire.firestore().collection('users')
+                        .doc(name)
+                        .update({
+                            default_pic_played : (total_p + 1),
+                            default_pic_score : total_s + real_score
+                        })
+                }
+            })
+
         var date = new Date();          // get today's date
 
         // formulate entry
@@ -90,6 +127,8 @@ function recordScore(u, real_score) {
                 total_points : total,
                 collection : 'default'
          });
+    } else {
+        console.log('no user signed in')
     }
 }
 
