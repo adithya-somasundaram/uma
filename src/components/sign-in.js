@@ -5,12 +5,26 @@ import { User } from '../User'
 
 // import firebase reference
 import fire from '../fire'
+import { Link } from 'react-router-dom';
 
 // global vars holding username and password
 var u_name = "", p_name = "";
 
 function SignIn() {
     const { value, setValue } = useContext(User);
+
+    const text = {
+        // position : 'absolute',
+        // alignItems : 'flex-end'
+        float : 'left',
+    }
+
+    const link = {
+        float : 'left',
+        marginTop : '35px',
+        paddingLeft : '10px',
+        paddingRight : '10px'
+    }
 
     // display sign in form if user not signed in
     if (value == null || value === '') {
@@ -46,6 +60,11 @@ function SignIn() {
                         console.log("Error getting document:", error);
                     });
                 }}>Enter</button>
+                <div>
+                    <h4 style={text}>Don't have an account? click </h4>
+                    <Link style={link} to='/sign-up' >here</Link>
+                    <h4 style={text}>to sign up!</h4>
+                </div>
             </div>
         );
     }
