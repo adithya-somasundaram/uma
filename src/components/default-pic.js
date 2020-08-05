@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 
 // import user hooks
 import { User } from '../User'
@@ -17,7 +17,26 @@ const total = x.length;
 
 function DefaultPicGame() {
     const user = useContext(User)
-    console.log('here')
+
+    const inputStyle = {
+        position: 'absolute',
+        bottom: '10px',
+        marginBottom: '50px',
+        float: 'right',
+        // padding: '10px',
+        marginTop: 'auto',
+    }
+
+    const bottomButtons = {
+        position: 'absolute',
+        bottom: '5px',
+        // marginBottom: '20px',
+        float: 'right',
+        // padding: '10px',
+        marginTop: 'auto'
+    }
+
+
     // initialize game
     reset()
 
@@ -25,53 +44,58 @@ function DefaultPicGame() {
         <div className="App-header">
             <h2>Picture Game</h2>
             <img id='image' src={x[i][0]} alt="pic" width="30%" />
-            <input id='input'/>
-            <button onClick={() => {
-                console.log(i,total)
-                if (i < total) {
-                    if(document.getElementById('input').value.toUpperCase() ===
-                    x[i][1].toUpperCase()){
+            <div style={inputStyle}>
+                <label>Image name: </label>
+                <input id='input' />
+                <button onClick={() => {
+                    console.log(i, total)
+                    if (i < total) {
+                        if (document.getElementById('input').value.toUpperCase() ===
+                            x[i][1].toUpperCase()) {
+                            score += 1;
+                        }
+                        document.getElementById('input').value = ''
+                        i += 1;
+                        if (i < total) {
+                            document.getElementById('image').src = x[i][0];
+                        }
+                    }
+                    console.log(i, total)
+                    if (i === total) {
+                        console.log('in here')
+                        recordScore({ user }, score)
+                        i += 1
+                    }
+                }} >Check</button>
+            </div>
+            <div style={bottomButtons}>
+                <button onClick={() => {
+                    if (i < total) {
+                        i += 1;
                         score += 1;
+                        if (i < total) {
+                            document.getElementById('image').src = x[i][0];
+                        }
                     }
-                    document.getElementById('input').value = ''
-                    i += 1;
-                    if(i < total){
-                        document.getElementById('image').src = x[i][0];
+                    if (i === total) {
+                        recordScore({ user }, score)
+                        i += 1
                     }
-                }
-                console.log(i, total)
-                if (i === total) {
-                    console.log('in here')
-                    recordScore({user}, score)
-                    i += 1
-                }
-            }} >Check</button>
-            <button onClick={() => {
-                if (i < total) {
-                    i += 1;
-                    score += 1;
-                    if(i < total){
-                        document.getElementById('image').src = x[i][0];
+                }} >Overwrite</button>
+                <button onClick={() => {
+                    if (i < total) {
+                        i += 1;
+                        if (i < total) {
+                            document.getElementById('image').src = x[i][0];
+                        }
                     }
-                }
-                if (i === total) {
-                    recordScore({user}, score)
-                    i += 1
-                }
-            }} >Overwrite</button>
-            <button onClick={() => {
-                if (i < total) {
-                    i += 1;
-                    if(i < total){
-                        document.getElementById('image').src = x[i][0];
+                    if (i === total) {
+                        recordScore({ user }, score)
+                        i += 1
                     }
-                }
-                if (i === total) {
-                    recordScore({user}, score)
-                    i += 1
-                }
-            }} >Skip</button>
-            <button onClick={() => reset()} >Start Over</button>
+                }} >Skip</button>
+                <button onClick={() => reset()} >Start Over</button>
+            </div>
         </div>
     )
 }
@@ -99,15 +123,15 @@ function recordScore(u, real_score) {
         fire.firestore().collection('users')
             .doc(name)
             .get()
-            .then(function(doc){
-                if(doc.exists){
+            .then(function (doc) {
+                if (doc.exists) {
                     total_p = doc.data()['default_pic_played']
                     total_s = doc.data()['default_pic_score']
                     fire.firestore().collection('users')
                         .doc(name)
                         .update({
-                            default_pic_played : (total_p + 1),
-                            default_pic_score : total_s + real_score
+                            default_pic_played: (total_p + 1),
+                            default_pic_score: total_s + real_score
                         })
                 }
             })
@@ -116,7 +140,7 @@ function recordScore(u, real_score) {
 
         // formulate entry
         var entry = (date.getMonth() + 1).toString() + "-" + date.getDate().toString() + "-" + date.getFullYear().toString() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
-        
+
         // write to firebase
         fire.firestore().collection('users')
             .doc(name)
@@ -124,9 +148,9 @@ function recordScore(u, real_score) {
             .doc(entry)
             .set({
                 score: real_score,
-                total_points : total,
-                collection : 'default'
-         });
+                total_points: total,
+                collection: 'default'
+            });
     } else {
         console.log('no user signed in')
     }
