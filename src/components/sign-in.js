@@ -21,9 +21,19 @@ function SignIn() {
 
     const link = {
         float : 'left',
-        marginTop : '35px',
+        marginTop : '30px',
         paddingLeft : '10px',
         paddingRight : '10px'
+    }
+
+    const enter = {
+        padding : '10px',
+        width : '20%'
+    }
+
+    const test = {
+        width : '145px',
+        marginLeft : '5px'
     }
 
     // display sign in form if user not signed in
@@ -36,10 +46,10 @@ function SignIn() {
                     <input id='username' type='text' onChange={() => { setUname(document.getElementById('username').value) }} />
                     <br></br>
                     <label>Password: </label>
-                    <input id='password' type='password' onChange={() => { setPname(document.getElementById('password').value) }} />
+                    <input style={test}id='password' type='password' onChange={() => { setPname(document.getElementById('password').value) }} />
                 </div>
                 <br></br>
-                <button onClick={() => {
+                <button style={enter} onClick={() => {
                     var ref = fire.firestore().collection('users').doc(u_name);
 
                     ref.get().then(function (doc) {
