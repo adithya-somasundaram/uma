@@ -17,14 +17,14 @@ const total = x.length;
 
 function DefaultPicGame() {
     const user = useContext(User)
-
+    console.log('here')
     // initialize game
     reset()
 
     return (
         <div className="App-header">
             <h2>Picture Game</h2>
-            <img id='image' src={x[i][0]} alt="Raiders" width="30%" />
+            <img id='image' src={x[i][0]} alt="pic" width="30%" />
             <input id='input'/>
             <button onClick={() => {
                 console.log(i,total)

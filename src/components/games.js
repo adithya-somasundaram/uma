@@ -12,9 +12,7 @@ class PictureGame extends Component {
     render() {
         if(this.props.name == null || this.props.name === ''){
             return(
-                <div className="App-header">
                     <DefaultPic/>
-                </div>
             )
         }
         return (
