@@ -10,6 +10,7 @@ import Home from './components/home'
 import MemorySquares from './components/memory-squares'
 import PicGame from './components/games'
 import DefaultPicGame from './components/default-pic'
+import CustomPicUpload from './components/custom-pic-upload'
 import SignUp from './components/sign-up'
 import SignIn from './components/sign-in'
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/memory-squares" exact component={MemorySquares} />
           <Route exact path="/picture-game" render={(props) => <PicGame {...props} name={value}/>} />
           <Route path="/picture-game/default" exact component={DefaultPicGame} />
+          <Route path="/picture-game/create" exact component={CustomPicUpload} />
           {/* <Route path="/my-profile" exact component={MyProfile} /> */}
           <Route path="/sign-up" exact component={SignUp} />
           <Route path="/sign-in" exact component={SignIn} />
