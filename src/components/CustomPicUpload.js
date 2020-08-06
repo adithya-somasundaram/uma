@@ -53,6 +53,13 @@ function CustomPicUpload() {
                     name = user.value + '/' + document.getElementById('title').value + '/' + element[0].toString()
                     fire.storage().ref(name).put(element[1])
                 })
+                fire.firestore().collection('users')
+                    .doc(user.value)
+                    .collection('custom-pic-games')
+                    .doc(document.getElementById('title').value)
+                    .set({
+                    size : forStorage.length
+                });
                 alert('Custom game added!')
             }}>Finish custom set!</button>
         </div>
