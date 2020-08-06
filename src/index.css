@@ -50,11 +50,10 @@ a {
   float: left;
   padding: 25px;
   font-family: 'Bahnschrift';
-  font-size: larger;
+  font-size: 6vh;
   border-color: black;
-  border-radius: 10px;
-  background-color: antiquewhite;
-  width: 100vh;
+  background-color: white;
+  width: 80vh;
   height: 150px;
   margin-bottom: 10px;
 }

@@ -5,14 +5,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
 
 // components
-import Navbar from './components/nav'
-import Home from './components/home'
-import MemorySquares from './components/memory-squares'
-import PicGame from './components/games'
-import DefaultPicGame from './components/default-pic'
-import CustomPicUpload from './components/custom-pic-upload'
-import SignUp from './components/sign-up'
-import SignIn from './components/sign-in'
+import Navbar from './components/Navbar'
+import Home from './components/Home'
+import MemorySquares from './components/MemorySquares'
+import PictureGame from './components/PictureGame'
+import DefaultPicGame from './components/DefaultPicGame'
+import CustomPicUpload from './components/CustomPicUpload'
+import SignUp from './components/SignUp'
+import SignIn from './components/SignIn'
 
 // hooks
 import {User} from './User'
@@ -29,7 +29,7 @@ function App() {
           <Navbar />
           <Route path="/" exact component={Home} /> 
           <Route path="/memory-squares" exact component={MemorySquares} />
-          <Route exact path="/picture-game" render={(props) => <PicGame {...props} name={value}/>} />
+          <Route exact path="/picture-game" component={PictureGame} />
           <Route path="/picture-game/default" exact component={DefaultPicGame} />
           <Route path="/picture-game/create" exact component={CustomPicUpload} />
           {/* <Route path="/my-profile" exact component={MyProfile} /> */}
