@@ -67,11 +67,10 @@ function CustomPicUpload() {
                     .collection('custom-pic-games')
                     .doc(document.getElementById('title').value)
                     .set({
-                    size : forStorage.length,
-                    games_played : 0,
-                    total_score : 0
+                    size : forStorage.length
                 });
                 alert('Custom game added!')
+                document.getElementById('title').value = ''
                 reset()
             }}>Finish custom set!</button>
         </div>
