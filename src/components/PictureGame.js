@@ -59,9 +59,8 @@ class PictureGame extends Component {
                         <button className="game-icons">Create Custom Game</button>
                     </Link>
                     <br></br>
-                    {/* <Link to='/picture-game/custom'> */}
-                        {this.state.custom_buttons}
-                    {/* </Link> */}
+                        
+                    {this.state.custom_buttons}
                 </ul>
             </div>
         );
