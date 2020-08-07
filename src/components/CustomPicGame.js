@@ -8,13 +8,19 @@ class CustomPicGame extends Component {
         super(props)
 
         this.state = {
-            images : []
+            images : [],
+            length : 0
         }
     }
 
+    // store custom game images
     async componentDidMount(){
         if(this.props.user != null && this.props.user !== ''){
+
+            // store path to custom game in storage
             var path = '/' + this.props.user + '/custom-pic-game/' + this.props.location.state['game']['game'] +'/';
+
+            // store images and names in state.images
             await fire.storage().ref().child(path).listAll().then(
                 image => {
                     const temp = []
@@ -24,7 +30,6 @@ class CustomPicGame extends Component {
                             this.setState({
                                 images : temp
                             })
-                            console.log("HERE", this.state.images, temp)
                         })
                     })
                 }
