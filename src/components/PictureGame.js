@@ -31,25 +31,26 @@ class PictureGame extends Component {
     }
 
     async componentDidMount() {
-        console.log(this.props)
+        // store user custom games if logged in
         if (this.props.user != null && this.props.user !== '') {
             await fire.firestore().collection('users')
                 .doc(this.props.user)
                 .collection('custom-pic-games')
                 .get()
                 .then(snapshot => {
+                    // store all custom games
                     var temp = []
                     snapshot.forEach(doc => {
                         temp.push(doc.id)
                     })
 
+                    // store all custom games as buttons linking to custom pic game
                     var temp2 = temp.map(game => <Link to ={{pathname:"/picture-game/custom", state:{game:{game}}}}>
                         <button style={this.state.custom_buttons_style}>{game}</button>
                     </Link>)
                     this.setState({ user_games: temp, custom_buttons : temp2 })
                 })
         }
-        console.log(this.state)
     }
 
     render() {
