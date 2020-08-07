@@ -32,7 +32,9 @@ class PictureGame extends Component {
                         temp.push(doc.id)
                     })
 
-                    var temp2 = temp.map(game => <button className="game-icons">{game}</button>)
+                    var temp2 = temp.map(game => <Link to ={{pathname:"/picture-game/default"}}>
+                        <button className="game-icons">{game}</button>
+                    </Link>)
                     this.setState({ user_games: temp, custom_buttons : temp2 })
                 })
         }
@@ -57,9 +59,9 @@ class PictureGame extends Component {
                         <button className="game-icons">Create Custom Game</button>
                     </Link>
                     <br></br>
-                    <Link to='/picture-game/custom'>
+                    {/* <Link to='/picture-game/custom'> */}
                         {this.state.custom_buttons}
-                    </Link>
+                    {/* </Link> */}
                 </ul>
             </div>
         );
