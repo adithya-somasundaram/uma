@@ -80,7 +80,7 @@ function handleConfirmPasswordChange(input) {
 }
 
 // store usernames and passwords from firebase
-function store() {
+function store () {
     fire.firestore().collection('users').get().then(
         snapshot => {
             const usernames = []

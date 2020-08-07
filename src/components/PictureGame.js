@@ -1,39 +1,69 @@
-import React, { useContext } from 'react'
+import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 
 // import default picture game and user hook
 import DefaultPicGame from './DefaultPicGame'
-import { User } from '../User'
+// import { User } from '../User'
 
-function PictureGame() {
-    const user = useContext(User)
+// import firebase connection
+import fire from '../fire'
 
-    // run default game if no user signed in
-    if (user.value == null || user.value === '') {
-        return (
-            <DefaultPicGame />
-        );
+class PictureGame extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            user_games: [],
+            custom_buttons : []
+        }
     }
 
-    // give options to run default game or run/create custom game if user signed in
-    return (
-        <div className="App-general">
-            <h2>Picture Game</h2>
-            <ul>
-                <Link to='/picture-game/default'>
-                    <button className="game-icons">Use Default Game</button>
-                </Link>
-                <br></br>
-                <Link to='/picture-game/create'>
-                    <button className="game-icons">Create Custom Game</button>
-                </Link>
-                <br></br>
-                <Link to='/picture-game/custom'>
-                    <button className="game-icons">Use Custom Game</button>
-                </Link>
-            </ul>
-        </div>
-    );
+    async componentDidMount() {
+        console.log(this.props)
+        if (this.props.user != null && this.props.user !== '') {
+            await fire.firestore().collection('users')
+                .doc(this.props.user)
+                .collection('custom-pic-games')
+                .get()
+                .then(snapshot => {
+                    var temp = []
+                    snapshot.forEach(doc => {
+                        temp.push(doc.id)
+                    })
+
+                    var temp2 = temp.map(game => <button className="game-icons">{game}</button>)
+                    this.setState({ user_games: temp, custom_buttons : temp2 })
+                })
+        }
+        console.log(this.state)
+    }
+
+    render() {
+        if (this.props.user == null || this.props.user === '') {
+            return (
+                <DefaultPicGame />
+            );
+        }
+        return (
+            <div className="App-general">
+                <h2>Picture Game</h2>
+                <ul>
+                    <Link to='/picture-game/default'>
+                        <button className="game-icons">Use Default Game</button>
+                    </Link>
+                    <br></br>
+                    <Link to='/picture-game/create'>
+                        <button className="game-icons">Create Custom Game</button>
+                    </Link>
+                    <br></br>
+                    <Link to='/picture-game/custom'>
+                        {this.state.custom_buttons}
+                    </Link>
+                </ul>
+            </div>
+        );
+    }
 }
 
 export default PictureGame;

@@ -27,14 +27,14 @@ function App() {
         {/* Set up routes with navbar and hooks */}
         <User.Provider value={{value,setValue}}>
           <Navbar />
-          <Route path="/" exact component={Home} /> 
-          <Route path="/memory-squares" exact component={MemorySquares} />
-          <Route exact path="/picture-game" component={PictureGame} />
-          <Route path="/picture-game/default" exact component={DefaultPicGame} />
-          <Route path="/picture-game/create" exact component={CustomPicUpload} />
-          {/* <Route path="/my-profile" exact component={MyProfile} /> */}
-          <Route path="/sign-up" exact component={SignUp} />
-          <Route path="/sign-in" exact component={SignIn} />
+          <Route exact path="/" component={Home} /> 
+          <Route exact path="/memory-squares" component={MemorySquares} />
+          <Route exact path="/picture-game" render={(props)=><PictureGame {...props} user={value}/>} />
+          <Route exact path="/picture-game/default" component={DefaultPicGame} />
+          <Route exact path="/picture-game/create" component={CustomPicUpload} />
+          {/* <Route path="/my-profile" component={MyProfile} /> */}
+          <Route exact path="/sign-up" component={SignUp} />
+          <Route exact path="/sign-in" component={SignIn} />
         </User.Provider>
       </div>
     </Router>
