@@ -32,6 +32,7 @@ function App() {
           <Route exact path="/picture-game" render={(props)=><PictureGame {...props} user={value}/>} />
           <Route exact path="/picture-game/default" component={DefaultPicGame} />
           <Route exact path="/picture-game/create" component={CustomPicUpload} />
+          {/* <Route exact path="/picture-game/custom" component={} /> */}
           {/* <Route path="/my-profile" component={MyProfile} /> */}
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/sign-in" component={SignIn} />
