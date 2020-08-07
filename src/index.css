@@ -45,15 +45,3 @@ a {
   height: 100%;
   display: flex;
 }
-
-.game-icons {
-  float: left;
-  padding: 25px;
-  font-family: 'Bahnschrift';
-  font-size: 6vh;
-  border-color: black;
-  background-color: white;
-  width: 80vh;
-  height: 150px;
-  margin-bottom: 10px;
-}
