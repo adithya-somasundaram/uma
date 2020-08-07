@@ -17,20 +17,19 @@ class CustomPicGame extends Component {
             var path = '/' + this.props.user + '/custom-pic-game/' + this.props.location.state['game']['game'] +'/';
             await fire.storage().ref().child(path).listAll().then(
                 image => {
-                    var temp = []
+                    const temp = []
                     image.items.forEach(img=>{
                         img.getDownloadURL().then(url => {
                             temp.push([img.name, url])
+                            this.setState({
+                                images : temp
+                            })
+                            console.log("HERE", this.state.images, temp)
                         })
                     })
-                    this.setState({
-                        images : temp
-                    })
-                    console.log("HERE", this.state)
                 }
             )
-        }
-        
+        }   
     }
 
     render(){
@@ -48,8 +47,8 @@ class CustomPicGame extends Component {
         }
         return (
             <div className="App-general">
-               <h2>{this.props.location.state['game']['game']}</h2>
-               <img src={this.state.images[0][1]} alt="rip"></img>
+               <h2>{this.props.location.state['game']['game']} lmao</h2>
+               <img width={"40%"} src={this.state.images[0][1]} alt="rip"></img>
             </div>)
     }
 }
