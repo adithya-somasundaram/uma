@@ -37,7 +37,7 @@ function MemorySquares() {
         width: '70%'
     }
     return (
-        <div className="App-header">
+        <div className="App-general">
             <h2>Memory Squares</h2>
             <h3 id='score'>Score: {score}</h3>
             <div>

@@ -13,9 +13,8 @@ var u_name = "", p_name = "";
 function SignIn() {
     const { value, setValue } = useContext(User);
 
+    // local style sheets
     const text = {
-        // position : 'absolute',
-        // alignItems : 'flex-end'
         float : 'left',
     }
 
@@ -39,7 +38,7 @@ function SignIn() {
     // display sign in form if user not signed in
     if (value == null || value === '') {
         return (
-            <div className="App-header">
+            <div className="App-general">
                 <h2 id='Header'>Sign In</h2>
                 <div>
                     <label>Username: </label>
@@ -55,12 +54,7 @@ function SignIn() {
                     ref.get().then(function (doc) {
                         if (doc.exists) {
                             if (doc.data()['password'] === p_name) {
-                                console.log('success!')
                                 setValue(u_name)
-                                // document.getElementById('Header').innerText = "Welcome " + u_name;
-                                console.log({ value }, u_name)
-                            } else {
-                                console.log('failure')
                             }
                         } else {
                             alert("User does not exist");
@@ -81,7 +75,7 @@ function SignIn() {
 
     // display welcome if user signed in
     return (
-        <div className="App-header">
+        <div className="App-general">
             <br></br>
             <h2>Welcome {value}</h2>
             <h3>Click on one of the games in the top left to get started.</h3>
@@ -89,10 +83,12 @@ function SignIn() {
     );
 }
 
+// input handler for username
 function setUname(input) {
     u_name = input;
 }
 
+// input handler for password
 function setPname(input) {
     p_name = input;
 }

@@ -6,20 +6,22 @@ import fire from '../fire'
 // import user hooks
 import {User} from '../User'
 
-var users = []
+// local variables
+var users = []       
 var secrets = []
 var username = ''
 var password = ''
 var confirm_password = ''
 
 function SignUp() {
+    // set up user hook
     const { setValue } = useContext(User);
 
     // store usernames from firebase
     store()
 
     return (
-        <div className="App-header">
+        <div className="App-general">
             <h2>Sign Up</h2>
             <form>
                 <label>Username: </label>
@@ -33,6 +35,7 @@ function SignUp() {
             </form>
             <br></br>
             <button onClick={() => {
+                // username and password must pass following conditions:
                 if (username.length < 5) {
                     alert("Username must be greater than 5 characters")
                 } else if (password.length < 7) {
@@ -44,6 +47,7 @@ function SignUp() {
                 } else if (secrets.includes(password)) {
                     alert("Password taken :(")
                 } else {
+                    // create new account and login
                     fire.firestore().collection('users').doc(username).set({
                         password: password,
                         mem_squares_played: 0,
@@ -51,7 +55,7 @@ function SignUp() {
                         default_pic_played: 0,
                         default_pic_score: 0
                     });
-                    setValue(username)
+                    setValue(username)      // login as new account
                     alert("New account created :)");
                 }
             }}>Enter</button>
@@ -60,19 +64,22 @@ function SignUp() {
 
 }
 
-// input event handlers
+// store username input
 function handleUsernameChange(input) {
     username = input
 }
 
+// store password input
 function handlePasswordChange(input) {
     password = input
 }
 
+// store password confirmation input
 function handleConfirmPasswordChange(input) {
     confirm_password = input
 }
 
+// store usernames and passwords from firebase
 function store() {
     fire.firestore().collection('users').get().then(
         snapshot => {

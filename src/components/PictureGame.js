@@ -1,19 +1,23 @@
 import React, { useContext } from 'react'
 import { Link } from "react-router-dom";
 
-import DefaultPic from './DefaultPicGame'
+// import default picture game and user hook
+import DefaultPicGame from './DefaultPicGame'
 import { User } from '../User'
 
 function PictureGame() {
     const user = useContext(User)
-    console.log(user)
+
+    // run default game if no user signed in
     if (user.value == null || user.value === '') {
         return (
-            <DefaultPic />
+            <DefaultPicGame />
         );
     }
+
+    // give options to run default game or run/create custom game if user signed in
     return (
-        <div className="App-header">
+        <div className="App-general">
             <h2>Picture Game</h2>
             <ul>
                 <Link to='/picture-game/default'>

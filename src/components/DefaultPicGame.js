@@ -10,88 +10,86 @@ import fire from '../fire'
 import Apple from '../apple.jpg'
 import Banana from '../banana.jpg'
 
-// global vars
-var x = [[Apple, 'apple'], [Banana, 'banana']];
-var i, score;
-const total = x.length;
+// holds default images and names
+var pictures = [[Apple, 'apple'], [Banana, 'banana']];
+var index, score;
+
+// stores total possible score
+const total = pictures.length;
 
 function DefaultPicGame() {
     const user = useContext(User)
 
+    // style for input box for user's answers
     const inputStyle = {
         position: 'absolute',
         bottom: '10px',
         marginBottom: '50px',
         float: 'right',
-        // padding: '10px',
         marginTop: 'auto',
     }
 
+    // style for buttons surrounding input box
     const bottomButtons = {
         position: 'absolute',
         bottom: '5px',
-        // marginBottom: '20px',
         float: 'right',
-        // padding: '10px',
         marginTop: 'auto'
     }
-
 
     // initialize game
     reset()
 
     return (
-        <div className="App-header">
+        <div className="App-general">
             <h2>Picture Game</h2>
-            <img id='image' src={x[i][0]} alt="pic" width="30%" />
+            <img id='image' src={pictures[index][0]} alt="pic" width="30%" />
             <div style={inputStyle}>
                 <label>Image name: </label>
                 <input id='input' />
                 <button onClick={() => {
-                    console.log(i, total)
-                    if (i < total) {
+                    if (index < total) {
                         if (document.getElementById('input').value.toUpperCase() ===
-                            x[i][1].toUpperCase()) {
+                        pictures[index][1].toUpperCase()) {
                             score += 1;
                         }
                         document.getElementById('input').value = ''
-                        i += 1;
-                        if (i < total) {
-                            document.getElementById('image').src = x[i][0];
+                        index += 1;
+                        if (index < total) {
+                            document.getElementById('image').src = pictures[index][0];
                         }
                     }
-                    console.log(i, total)
-                    if (i === total) {
-                        console.log('in here')
+                    
+                    if (index === total) {
                         recordScore({ user }, score)
-                        i += 1
+                        index += 1
                     }
                 }} >Check</button>
             </div>
             <div style={bottomButtons}>
                 <button onClick={() => {
-                    if (i < total) {
-                        i += 1;
+                    if (index < total) {
+                        index += 1;
                         score += 1;
-                        if (i < total) {
-                            document.getElementById('image').src = x[i][0];
+                        if (index < total) {
+                            document.getElementById('image').src = pictures[index][0];
                         }
                     }
-                    if (i === total) {
+                    if (index === total) {
                         recordScore({ user }, score)
-                        i += 1
+                        index += 1
                     }
                 }} >Overwrite</button>
                 <button onClick={() => {
-                    if (i < total) {
-                        i += 1;
-                        if (i < total) {
-                            document.getElementById('image').src = x[i][0];
+                    if (index < total) {
+                        index += 1;
+                        if (index < total) {
+                            document.getElementById('image').src = pictures[index][0];
                         }
                     }
-                    if (i === total) {
+                    if (index === total) {
                         recordScore({ user }, score)
-                        i += 1
+                        index += 1
                     }
                 }} >Skip</button>
                 <button onClick={() => reset()} >Start Over</button>
@@ -102,22 +100,21 @@ function DefaultPicGame() {
 
 // shuffle image order and reset score
 function reset() {
-    i = 0;
+    index = 0;
     score = 0;
     var temp = [], location;
 
     for (var y = 0; y < total; y++) {
         location = Math.floor(Math.random() * (total - y)); //random number in color array
-        temp.push(x[location])
-        x.splice(location, 1)
+        temp.push(pictures[location])
+        pictures.splice(location, 1)
     }
-    x = temp;
+    pictures = temp;
 }
 
-function recordScore(u, real_score) {
-    console.log(u)
-    if (u.user['value'] !== '' && u.user['value'] !== null) {
-        var name = u.user['value'];     // get user name
+function recordScore(player, real_score) {
+    if (player.user['value'] !== '' && player.user['value'] !== null) {
+        var name = player.user['value'];     // get user name
         var total_s, total_p;           // will read total games played + total score
 
         fire.firestore().collection('users')
@@ -151,8 +148,6 @@ function recordScore(u, real_score) {
                 total_points: total,
                 collection: 'default'
             });
-    } else {
-        console.log('no user signed in')
     }
 }
 
