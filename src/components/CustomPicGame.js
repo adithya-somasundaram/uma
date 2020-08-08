@@ -67,44 +67,47 @@ class CustomPicGame extends Component {
 
     recordScore(user, real_score) {
         console.log(user, real_score)
-        // if (user !== '' && user !== null) {
-        //     var name = user    // get user name
-        //     var total_s, total_p;           // will read total games played + total score
+        if (user !== '' && user !== null) {
+            var name = user    // get user name
+            var game_name = this.props.location.state['game']['game']
+            var total_s, total_p;           // will read total games played + total score
 
-        //     fire.firestore().collection('users')
-        //         .doc(name)
-        //         .collection('custom-pic-games')
-        //         .doc(this.props.location.state['game']['game'])
-        //         .get()
-        //         .then(function (doc) {
-        //             if (doc.exists) {
-        //                 total_p = doc.data()['games_played']
-        //                 total_s = doc.data()['total_score']
-        //                 fire.firestore().collection('users')
-        //                     .doc(name)
-        //                     .update({
-        //                         default_pic_played: (total_p + 1),
-        //                         default_pic_score: total_s + real_score
-        //                     })
-        //             }
-        //         })
+            fire.firestore().collection('users')
+                .doc(name)
+                .collection('custom-pic-games')
+                .doc(game_name)
+                .get()
+                .then(function (doc) {
+                    if (doc.exists) {
+                        total_p = doc.data()['games_played']
+                        total_s = doc.data()['total_score']
+                        fire.firestore().collection('users')
+                            .doc(name)
+                            .collection('custom-pic-games')
+                            .doc(game_name)
+                            .update({
+                                games_played: (total_p + 1),
+                                total_score: total_s + real_score
+                            })
+                    }
+                })
 
-        //     var date = new Date();          // get today's date
+            var date = new Date();          // get today's date
 
-        //     // formulate entry
-        //     var entry = (date.getMonth() + 1).toString() + "-" + date.getDate().toString() + "-" + date.getFullYear().toString() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
+            // formulate entry
+            var entry = (date.getMonth() + 1).toString() + "-" + date.getDate().toString() + "-" + date.getFullYear().toString() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds()
 
-        //     // write to firebase
-        //     fire.firestore().collection('users')
-        //         .doc(name)
-        //         .collection('picture-game')
-        //         .doc(entry)
-        //         .set({
-        //             score: real_score,
-        //             total_points: this.state.total,
-        //             collection: this.props.location.state['game']['game']
-        //         });
-        // }
+            // write to firebase
+            fire.firestore().collection('users')
+                .doc(name)
+                .collection('picture-game')
+                .doc(entry)
+                .set({
+                    score: real_score,
+                    total_points: this.state.total,
+                    collection: game_name
+                });
+        }
     }
 
     reset() {
@@ -140,7 +143,7 @@ class CustomPicGame extends Component {
                         var score = this.state.score
                         if (current < this.state.total) {
                             if (document.getElementById('input').value.toUpperCase() ===
-                                this.state.images[current][1].toUpperCase()) {
+                                this.state.images[current][0].toUpperCase()) {
                                 this.incrementScore()
                                 score += 1
                             }
@@ -152,7 +155,7 @@ class CustomPicGame extends Component {
                                 document.getElementById('image').src = this.state.images[current][1];
                             }
                         }
-
+                        console.log(score)
                         if (current === this.state.total) {
                             console.log('HERE')
                             this.recordScore(this.props.user, score)
