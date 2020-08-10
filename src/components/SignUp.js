@@ -17,12 +17,18 @@ function SignUp() {
     // set up user hook
     const { setValue } = useContext(User);
 
+    // local styling
+    const enter = {
+        padding : '10px',
+        width : '20%'
+    }
+
     // store usernames from firebase
     store()
 
     return (
         <div className="App-general">
-            <h2>Sign Up</h2>
+            <p className="title">Sign Up</p>
             <form>
                 <label>Username: </label>
                 <input id='username' type='text' onChange={() => handleUsernameChange(document.getElementById('username').value)} />
@@ -34,7 +40,7 @@ function SignUp() {
                 <input type='password' id='c_password' onChange={() => handleConfirmPasswordChange(document.getElementById('c_password').value)} />
             </form>
             <br></br>
-            <button onClick={() => {
+            <button style={enter} onClick={() => {
                 // username and password must pass following conditions:
                 if (username.length < 5) {
                     alert("Username must be greater than 5 characters")

@@ -14,9 +14,6 @@ function SignIn() {
     const { value, setValue } = useContext(User);
 
     // local style sheets
-    const text = {
-        float : 'left',
-    }
 
     const link = {
         float : 'left',
@@ -65,9 +62,7 @@ function SignIn() {
                     });
                 }}>Enter</button>
                 <div>
-                    <h4 style={text}>Don't have an account? click </h4>
-                    <Link style={link} to='/sign-up' >here</Link>
-                    <h4 style={text}>to sign up!</h4>
+                    <Link style={link} to='/sign-up' >Click here to sign up for an account!</Link>
                 </div>
             </div>
         );
