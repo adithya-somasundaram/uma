@@ -23,6 +23,13 @@ function SignUp() {
         width : '20%'
     }
 
+    const user = {
+        marginRight : '11vh'
+    }
+    const pass = {
+        marginRight : '11.75vh'
+    }
+
     // store usernames from firebase
     store()
 
@@ -30,10 +37,10 @@ function SignUp() {
         <div className="App-general">
             <p className="title">Sign Up</p>
             <form>
-                <label>Username: </label>
+                <label style={user}>Username: </label>
                 <input id='username' type='text' onChange={() => handleUsernameChange(document.getElementById('username').value)} />
                 <br></br>
-                <label>Password: </label>
+                <label style={pass}>Password: </label>
                 <input type='password' id='password' onChange={() => handlePasswordChange(document.getElementById('password').value)} />
                 <br></br>
                 <label>Confirm Password: </label>
