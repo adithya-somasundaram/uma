@@ -133,7 +133,7 @@ class CustomPicGame extends Component {
         }
         return (
             <div className="App-general">
-                <h2>{this.props.location.state['game']['game']}</h2>
+                <p className = "title">{this.props.location.state['game']['game']}</p>
                 <img id="image" width="30%" src={this.state.images[this.state.index % this.state.total][1]} alt="rip"></img>
                 <div style={this.state.inputStyle}>
                     <label>Image name: </label>

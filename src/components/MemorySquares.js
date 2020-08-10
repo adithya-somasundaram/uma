@@ -38,7 +38,7 @@ function MemorySquares() {
     }
     return (
         <div className="App-general">
-            <h2>Memory Squares</h2>
+            <p className = "title">Memory Squares</p>
             <h3 id='score'>Score: {score}</h3>
             <div>
                 <button id='1' style={squareStyle} onClick={() => {

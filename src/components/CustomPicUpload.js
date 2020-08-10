@@ -26,7 +26,7 @@ function CustomPicUpload() {
     }
     return (
         <div className="App-general">
-            <h2>Create a new game!</h2>
+            <p className = "title">Create a new game!</p>
             <label >Custom set title: </label>
             <input id='title'/>
             <input type='file' id='input_file' onChange={(e) => {

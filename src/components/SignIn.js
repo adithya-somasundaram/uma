@@ -36,7 +36,7 @@ function SignIn() {
     if (value == null || value === '') {
         return (
             <div className="App-general">
-                <h2 id='Header'>Sign In</h2>
+                <p className = "title" id='Header'>Sign In</p>
                 <div>
                     <label>Username: </label>
                     <input id='username' type='text' onChange={() => { setUname(document.getElementById('username').value) }} />
@@ -72,8 +72,8 @@ function SignIn() {
     return (
         <div className="App-general">
             <br></br>
-            <h2>Welcome {value}</h2>
-            <h3>Click on one of the games in the top left to get started.</h3>
+            <p className = "title">Welcome {value}</p>
+            <p>Click on one of the games in the top left to get started.</p>
         </div>
     );
 }

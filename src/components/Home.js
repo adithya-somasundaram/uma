@@ -6,7 +6,7 @@ import Raiders from './raiders.jpg'
 function Home() {
     return (
     <div className = "App-general">
-        <h2>Welcome to the Ultimate Memory Accelerator!</h2>
+        <p className = "title">Welcome to the Ultimate Memory Accelerator!</p>
         <div>Click on one of the games in the top left to begin. Sign in to log your progress :) Thanks, and go Raiders!</div>
         <br></br>
         <img src={Raiders} alt="Raiders" width="70%"/>

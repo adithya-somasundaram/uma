@@ -42,7 +42,7 @@ function DefaultPicGame() {
 
     return (
         <div className="App-general">
-            <h2>Picture Game</h2>
+            <p className = "title">Picture Game</p>
             <img id='image' src={pictures[index][0]} alt="pic" width="30%" />
             <div style={inputStyle}>
                 <label>Image name: </label>
