@@ -9,6 +9,7 @@ import fire from '../fire'
 // import game images
 import Apple from '../apple.jpg'
 import Banana from '../banana.jpg'
+import GameOver from '../gameOver.jpg'
 
 // holds default images and names
 var pictures = [[Apple, 'apple'], [Banana, 'banana']];
@@ -62,7 +63,7 @@ function DefaultPicGame() {
                     
                     if (index === total) {
                         recordScore({ user }, score)
-                        document.getElementById('image').src = null
+                        document.getElementById('image').src = GameOver
                         index += 1
                     }
                 }} >Check</button>
@@ -78,7 +79,7 @@ function DefaultPicGame() {
                     }
                     if (index === total) {
                         recordScore({ user }, score)
-                        document.getElementById('image').src = null
+                        document.getElementById('image').src = GameOver
                         index += 1
                     }
                 }} >Overwrite</button>
@@ -91,11 +92,14 @@ function DefaultPicGame() {
                     }
                     if (index === total) {
                         recordScore({ user }, score)
-                        document.getElementById('image').src = null
+                        document.getElementById('image').src = GameOver
                         index += 1
                     }
                 }} >Skip</button>
-                <button onClick={() => reset()} >Start Over</button>
+                <button onClick={() => {
+                    reset()
+                    document.getElementById('image').src = pictures[index][0]
+                }} >Start Over</button>
             </div>
         </div>
     )
