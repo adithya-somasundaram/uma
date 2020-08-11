@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 // import firebase reference
 import fire from '../fire'
 
+import GameOver from '../gameOver.jpg'
+
 class CustomPicGame extends Component {
     constructor(props) {
         super(props)
@@ -157,8 +159,8 @@ class CustomPicGame extends Component {
                         }
                         console.log(score)
                         if (current === this.state.total) {
-                            console.log('HERE')
                             this.recordScore(this.props.user, score)
+                            document.getElementById('image').src = GameOver
                             this.incrementIndex();
                         }
                     }} >Check</button>
@@ -178,6 +180,7 @@ class CustomPicGame extends Component {
                         }
                         if (current === this.state.total) {
                             this.recordScore(this.props.user, score)
+                            document.getElementById('image').src = GameOver
                             this.incrementIndex();
                         }
                     }} >Overwrite</button>
@@ -193,12 +196,13 @@ class CustomPicGame extends Component {
                         }
                         if (current === this.state.total) {
                             this.recordScore(this.props.user, score)
+                            document.getElementById('image').src = GameOver
                             this.incrementIndex();
                         }
                     }} >Skip</button>
                     <button onClick={() => {
                         this.reset()
-                        document.getElementById('image').src = this.state.images[this.state.index][1]
+                        document.getElementById('image').src = this.state.images[0][1]
                     }} >Start Over</button>
                 </div>
             </div>)
