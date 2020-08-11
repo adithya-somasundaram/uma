@@ -17,15 +17,16 @@ class PictureGame extends Component {
             user_games: [],
             custom_buttons : [],
             custom_buttons_style : {
-                float : 'left',
+                // float : 'left',
                 padding : '25px',
                 fontFamily : 'Bahnschrift',
                 fontSize : '6vh',
                 borderColor : 'black',
                 backgroundColor : 'white',
-                width : '80vh',
+                width : '100%',
                 height : '150px',
-                marginBottom : '10px'
+                marginBottom : '10px',
+                // marginLeft : "10%"
             }
         }
     }

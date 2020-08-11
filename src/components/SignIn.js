@@ -52,6 +52,8 @@ function SignIn() {
                         if (doc.exists) {
                             if (doc.data()['password'] === p_name) {
                                 setValue(u_name)
+                            } else {
+                                alert("Wrong password!")
                             }
                         } else {
                             alert("User does not exist");
