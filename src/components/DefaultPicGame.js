@@ -62,6 +62,7 @@ function DefaultPicGame() {
                     
                     if (index === total) {
                         recordScore({ user }, score)
+                        document.getElementById('image').src = null
                         index += 1
                     }
                 }} >Check</button>
@@ -77,6 +78,7 @@ function DefaultPicGame() {
                     }
                     if (index === total) {
                         recordScore({ user }, score)
+                        document.getElementById('image').src = null
                         index += 1
                     }
                 }} >Overwrite</button>
@@ -89,6 +91,7 @@ function DefaultPicGame() {
                     }
                     if (index === total) {
                         recordScore({ user }, score)
+                        document.getElementById('image').src = null
                         index += 1
                     }
                 }} >Skip</button>

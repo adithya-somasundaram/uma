@@ -13,6 +13,18 @@ var temp = null
 
 function CustomPicUpload() {
     const user = useContext(User);
+
+    // local styling
+    const input_style = {
+        width : "30%",
+        marginTop: "10px"
+    }
+
+    const button_style = {
+        fontFamily : "Bahnschrift",
+        marginTop: "10px",
+        padding : "10px"
+    }
     
     // if no user signed in, 
     if (user.value === '' || user.value == null) {
@@ -28,15 +40,15 @@ function CustomPicUpload() {
         <div className="App-general">
             <p className = "title">Create a new game!</p>
             <label >Custom set title: </label>
-            <input id='title'/>
+            <input id='title' type="text" style={input_style}/>
+            <br/>
+            <label>Image name:</label>
+            <input id='img_name' type='text' style={input_style}/>
             <input type='file' id='input_file' onChange={(e) => {
                 // image first stored in temp
                 temp = e.target.files[0]
             }} />
-
-            <label>Image name:</label>
-            <input id='img_name' type='text' />
-            <button onClick={() => {
+            <button style = {button_style} onClick={() => {
                 // check if temp holds image and is named
                 if (temp === null) {
                     alert('Upload image!')
@@ -52,7 +64,8 @@ function CustomPicUpload() {
                     alert('Image added successfully!')
                 }
             }}>Add image</button>
-            <button onClick={() => {
+            <br/>
+            <button style = {button_style} onClick={() => {
                 var name = null // will hold firebase storage path
 
                 // store each name and image in firebase storage

@@ -22,7 +22,7 @@ class PictureGame extends Component {
                 fontFamily : 'Bahnschrift',
                 fontSize : '6vh',
                 borderColor : 'black',
-                backgroundColor : 'white',
+                backgroundColor : '#c9c9c9',
                 width : '100%',
                 height : '150px',
                 marginBottom : '10px',
