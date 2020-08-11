@@ -196,7 +196,10 @@ class CustomPicGame extends Component {
                             this.incrementIndex();
                         }
                     }} >Skip</button>
-                    <button onClick={() => this.reset()} >Start Over</button>
+                    <button onClick={() => {
+                        this.reset()
+                        document.getElementById('image').src = this.state.images[this.state.index][1]
+                    }} >Start Over</button>
                 </div>
             </div>)
     }
