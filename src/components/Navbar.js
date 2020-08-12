@@ -88,7 +88,7 @@ function Navbar() {
                         <li>Picture Game</li>
                     </Link>
                     <div style={rightSide}>
-                        <Link to='/sign-in' style={buttons}>
+                        <Link to='/my-profile' style={buttons}>
                             <li>My Profile</li>
                         </Link>
                         <button style={signOut} onClick={() => {
