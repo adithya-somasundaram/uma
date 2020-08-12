@@ -23,9 +23,20 @@ class MyProfile extends Component {
                 .then(function (doc) {
                     var data = doc.data()
                     temp.push(<div>Memory Squares Games Played: {data['mem_squares_played']}</div>)
-                    temp.push(<div>Average Memory Squares Score: {data['mem_squares_score']/data['mem_squares_played']}</div>)
+                    temp.push(<div>Average Memory Squares Score: {data['mem_squares_score'] / data['mem_squares_played']}</div>)
                     temp.push(<div>Default Picture Games Played: {data['default_pic_played']}</div>)
-                    temp.push(<div>Average Default Picture Score: {data['default_pic_score']/data['default_pic_played']}</div>)
+                    temp.push(<div>Average Default Picture Score: {data['default_pic_score'] / data['default_pic_played']}</div>)
+                })
+            await fire.firestore().collection('users')
+                .doc(this.props.user)
+                .collection('custom-pic-games')
+                .get()
+                .then(snapshot => {
+                    snapshot.forEach(doc => {
+                        temp.push(<div>{doc.id} Games Played: {doc.data()['games_played']}</div>)
+                        temp.push(<div>Average {doc.id} Score: {doc.data()['total_score']/doc.data()['games_played']} / {doc.data()['size']}</div>)
+                    })
+
                 })
             this.setState({
                 data: temp
@@ -69,25 +80,6 @@ class MyProfile extends Component {
     //         {data_icons}
     //     </div>
     // )
-}
-
-function storeData(username, out) {
-    fire.firestore().collection('users')
-        .doc(username)
-        .get()
-        .then(function (doc) {
-            if (doc.exists) {
-                const temp = doc.data()
-                out[0] = temp['mem_squares_played']
-                out[1] = temp['mem_squares_score']
-                out[2] = temp['default_pic_played']
-                out[3] = temp['default_pic_score']
-                console.log(doc)
-            } else {
-                alert('System error');
-            }
-        }
-        )
 }
 
 export default MyProfile;
