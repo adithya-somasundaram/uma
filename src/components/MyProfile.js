@@ -67,19 +67,6 @@ class MyProfile extends Component {
             )
         }
     }
-
-
-    // storeData(user.value, data)
-
-    // var data_icons = data.map(entry => (<div>{entry}</div>))
-
-    // console.log(data)
-    // return (
-    //     <div className="App-general">
-    //         <p className="title">{user.value}</p>
-    //         {data_icons}
-    //     </div>
-    // )
 }
 
 export default MyProfile;
