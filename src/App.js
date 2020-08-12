@@ -35,7 +35,7 @@ function App() {
           <Route exact path="/picture-game/default" component={DefaultPicGame} />
           <Route exact path="/picture-game/create" component={CustomPicUpload} />
           <Route exact path="/picture-game/custom" render={(props)=><CustomPicGame {...props} user={value}/>} />
-          <Route exact path="/my-profile" component={MyProfile} />
+          <Route exact path="/my-profile" render={(props)=><MyProfile {...props} user={value}/>} />
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/sign-in" component={SignIn} />
         </User.Provider>
