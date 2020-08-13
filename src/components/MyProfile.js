@@ -17,33 +17,15 @@ class MyProfile extends Component {
     async componentDidMount() {
         if (this.props.user !== null && this.props.user !== '') {
             var temp = []
-            var left = {
-                // float : "left"
-            }
-            var right = {
-                // paddingLeft : "5px"
-            }
             await fire.firestore().collection('users')
                 .doc(this.props.user)
                 .get()
                 .then(function (doc) {
                     var data = doc.data()
-                    temp.push(<div>
-                        <div style={left}>Memory Squares Games Played: </div>
-                        <div style={right}>{data['mem_squares_played']}</div>
-                        <div style={left}>Average Memory Squares Score: </div>
-                        <div style={right}>{data['mem_squares_score'] / data['mem_squares_played']}</div>
-                    </div>
-                    )
-                    // temp.push(<br/>)
-                    temp.push(<div>
-                        <div style={left}>Default Picture Games Played: </div>
-                        <div style={right}>{data['default_pic_played']}</div>
-                        <div style={left}>Average Default Picture Score: </div>
-                        <div style={right}>{data['default_pic_score'] / data['default_pic_played']}</div>
-                    </div>
-                    )
-                    // temp.push(<br/>)
+                    temp.push(<div>Memory Squares Games Played: {data['mem_squares_played']}</div>)
+                    temp.push(<div>Average Memory Squares Score: {data['mem_squares_score'] / data['mem_squares_played']}</div>)
+                    temp.push(<div>Default Picture Games Played: {data['default_pic_played']}</div>)
+                    temp.push(<div>Average Default Picture Score: {data['default_pic_score'] / data['default_pic_played']}</div>)
                 })
             await fire.firestore().collection('users')
                 .doc(this.props.user)
@@ -51,14 +33,8 @@ class MyProfile extends Component {
                 .get()
                 .then(snapshot => {
                     snapshot.forEach(doc => {
-                        temp.push(<div>
-                            <p style={left}>{doc.id} Games Played: </p>
-                            <p style={right}>{doc.data()['games_played']}</p>
-                            <p style={left}>Average {doc.id} Score: </p>
-                            <p style={right}>{doc.data()['total_score']/doc.data()['games_played']} / {doc.data()['size']}</p>
-                        </div>
-                        )
-                        temp.push(<br/>)
+                        temp.push(<div>{doc.id} Games Played: {doc.data()['games_played']}</div>)
+                        temp.push(<div>Average {doc.id} Score: {doc.data()['total_score']/doc.data()['games_played']} / {doc.data()['size']}</div>)
                     })
 
                 })
