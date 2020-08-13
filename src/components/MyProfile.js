@@ -17,15 +17,23 @@ class MyProfile extends Component {
     async componentDidMount() {
         if (this.props.user !== null && this.props.user !== '') {
             var temp = []
+            var test  = {
+                marginTop : "0px",
+                display : "flex-box",
+                flexDirection : "row"
+            }
             await fire.firestore().collection('users')
                 .doc(this.props.user)
                 .get()
                 .then(function (doc) {
                     var data = doc.data()
-                    temp.push(<div>Memory Squares Games Played: {data['mem_squares_played']}</div>)
-                    temp.push(<div>Average Memory Squares Score: {data['mem_squares_score'] / data['mem_squares_played']}</div>)
-                    temp.push(<div>Default Picture Games Played: {data['default_pic_played']}</div>)
-                    temp.push(<div>Average Default Picture Score: {data['default_pic_score'] / data['default_pic_played']}</div>)
+                    temp.push(<h4>Memory Squares</h4>)
+                    temp.push(<p style={test}>Games Played: {data['mem_squares_played']}</p>)
+                    temp.push(<p style={test}>Average Score: {data['mem_squares_score'] / data['mem_squares_played']}</p>)
+                    temp.push(<br/>)
+                    temp.push(<h4>Default Picture Game</h4>)
+                    temp.push(<p style={test}>Games Played: {data['default_pic_played']}</p>)
+                    temp.push(<p style={test}>Average Score: {data['default_pic_score'] / data['default_pic_played']}</p>)
                 })
             await fire.firestore().collection('users')
                 .doc(this.props.user)
@@ -33,8 +41,10 @@ class MyProfile extends Component {
                 .get()
                 .then(snapshot => {
                     snapshot.forEach(doc => {
-                        temp.push(<div>{doc.id} Games Played: {doc.data()['games_played']}</div>)
-                        temp.push(<div>Average {doc.id} Score: {doc.data()['total_score']/doc.data()['games_played']} / {doc.data()['size']}</div>)
+                        temp.push(<br/>)
+                        temp.push(<h4>{doc.id}</h4>)
+                        temp.push(<p style={test}>Games Played: {doc.data()['games_played']}</p>)
+                        temp.push(<p style={test}>Average Score: {doc.data()['total_score']/doc.data()['games_played']} / {doc.data()['size']}</p>)
                     })
 
                 })
