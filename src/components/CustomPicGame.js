@@ -136,7 +136,7 @@ class CustomPicGame extends Component {
         return (
             <div className="App-general">
                 <p className = "title">{this.props.location.state['game']['game']}</p>
-                <img id="image" width="30%" src={this.state.images[this.state.index % this.state.total][1]} alt="rip"></img>
+                <img id="image" width="30%" src={this.state.images[this.state.index % this.state.total][1]} alt="error"></img>
                 <div style={this.state.inputStyle}>
                     <label>Image name: </label>
                     <input id='input' />
@@ -157,10 +157,10 @@ class CustomPicGame extends Component {
                                 document.getElementById('image').src = this.state.images[current][1];
                             }
                         }
-                        console.log(score)
+                        // console.log(score)
                         if (current === this.state.total) {
-                            this.recordScore(this.props.user, score)
                             document.getElementById('image').src = GameOver
+                            this.recordScore(this.props.user, score)   
                             this.incrementIndex();
                         }
                     }} >Check</button>
