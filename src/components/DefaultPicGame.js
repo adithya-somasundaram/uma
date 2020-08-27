@@ -7,8 +7,8 @@ import { User } from '../User'
 import fire from '../fire'
 
 // import game images
-import Apple from '../apple.jpg'
-import Banana from '../banana.jpg'
+import Apple from '../defaultPicGameImg/apple.jpg'
+import Banana from '../defaultPicGameImg/banana.jpg'
 import GameOver from '../gameOver.jpg'
 
 // holds default images and names
